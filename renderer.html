@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+  	<head>
+    	<meta charset='utf-8'>
+    	<meta name='viewport' content='width=device-width'>
+    	<title>Jersey Mikes Menu Tester</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+        <style>
+            #revn {
+                display: block;
+            }
+
+            #revi {
+                display: block;
+            }
+
+            random-output {
+                display: block;
+            }
+
+            random-name {
+                display: block;
+            }
+
+            random-ingredients {
+                display: block;
+            }
+        </style>
+	
+  	</head>
+  	<body>
+        <button id='gra'>Get Random All</button>
+        <button id='graccs'>Get Random Chicken Cheese Steak</button>
+        <button id='gracs'>Get Random Cheese Steak</button>
+        <button id='revn'>Reveal Name</button>
+        <button id='revi'>Reveal Ingredients</button>
+        <random-output></random-output>
+        <random-name></random-name>
+        <random-ingredients></random-ingredients>
+
+        <script>
+            const nums = new Array( 2, 3, 5, 6, 7, 8, 9, 10, 13, 14, 16, 17, 26, 42, 43, 44, 55, 56 ),
+                chickenCheeseSteakNums = new Array( 16, 26, 42, 44, 55 ),
+                cheeseSteakNums = new Array( 17, 43, 56 )
+
+            const names = new Array( `Jersey Shore's Favorite`, `Ham & Provolone`, `The Super Sub`, `Roast Beef & Provolone`, `Turkey & Provolone`, `Club Sub`, `Club Supreme`, `Tuna Fish`, `The Original Italian`, `The Veggie`, `Mike's Chicken Philly`, `Mike's Famous Philly`, `Chicken Bacon Ranch`, `Chipotle Chicken`, `Chipotle`, `Buffalo Chicken`, `Big Kahuna Chicken`, `The Big Kahuna` ),
+                ingredients = new Array( `Provolone, ham, cappacuolo`, `A true classic`, `Provolone, ham, prosciuttini & cappacuolo`, `Cooked on the premises using USDA Choice top rounds`, `Using antibiotic-free turkey. One of our most popular`, `Antibiotic-free turkey, ham, provolone, applewood smoked bacon & mayo`, `Roast beef, antibiotic-free turkey, swiss, applewood smoked bacon & mayo`, `Freshly made on premises`, `Provolone, ham, prosciuttini, cappacuolo, salami & pepperoni`, `Swiss, provolone & green bell peppers`, `Grilled onions, peppers & white American cheese`, `Grilled onions, peppers & white American cheese`, `Applewood smoked bacon, lettuce, tomato, white American cheese & ranch dressing`, `Grilled onions, peppers, white American cheese & chipotle mayo`, `Grilled onions, peppers, white American cheese & chipotle mayo`, `Frank's Red Hot Sauce, lettuce, tomato, white American cheese with blue cheese dressing`, `Grilled onions, peppers, mushrooms, jalapenos and extra white American cheese`, `Grilled onions, peppers, mushrooms, jalapenos and extra white American cheese` )
+
+            let numSelectedIndex = null
+
+            function display () {
+                document.querySelector( 'random-name' ).innerHTML = ''
+                document.querySelector( 'random-ingredients' ).innerHTML = ''
+                document.querySelector( 'random-output' ).innerHTML = nums[ numSelectedIndex ]
+            }
+
+            document.querySelector( '#gra' ).addEventListener( 'click', () => {
+                numSelectedIndex = Math.floor( Math.random() * nums.length )
+
+                display()
+            } )
+
+            document.querySelector( '#gracs' ).addEventListener( 'click', () => {
+                numSelectedIndex = nums.indexOf( cheeseSteakNums[ Math.floor( Math.random() * cheeseSteakNums.length ) ] )
+
+                display()
+            } )
+
+            document.querySelector( '#graccs' ).addEventListener( 'click', () => {
+                numSelectedIndex = nums.indexOf( chickenCheeseSteakNums[ Math.floor( Math.random() * chickenCheeseSteakNums.length ) ] )
+
+                display()
+            } )
+
+            document.querySelector( '#revn' ).addEventListener( 'click', () => {
+                if ( numSelectedIndex != null ) document.querySelector( 'random-name' ).innerHTML = names[ numSelectedIndex ]
+            } )
+
+            document.querySelector( '#revi' ).addEventListener( 'click', () => {
+                if ( numSelectedIndex != null ) document.querySelector( 'random-ingredients' ).innerHTML = ingredients[ numSelectedIndex ]
+            } )
+        </script>
+  	</body>
+</html>
